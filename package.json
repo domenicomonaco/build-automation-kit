@@ -1,0 +1,19 @@
+{
+  "name": "build-automation-kit",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Tecnologie per Persone di Domenico Monaco <https://www.tecnologieperpersone.it>",
+  "license": "GPL v3",
+  "scripts": {
+    "git": "node git-workflow.js",
+    "clone": "node gitclone.js",
+    "run": "node installrun.js"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.1",
+    "prompts": "^2.4.2",
+    "shelljs": "^0.8.5"
+  }
+}
