@@ -18,10 +18,10 @@ function install(ex) {
   fs.createReadStream('users.csv')
     .pipe(csv())
     .on('data', (row) => {
-      
+
       listofuser.push({
-        title: row['Cognome'] + ' @' + row['Username github'],
-        value: row['Username github']
+        title: row['cognome'] + ' ' + row['nome'] + ' @' + row['gitusername'],
+        value: row['gitusername']
       });
     }).on('end', () => {
       (async () => {
@@ -31,7 +31,7 @@ function install(ex) {
             name: 'value',
             message: 'Pick a user',
             choices: listofuser,
-            initial: 1
+            initial: 0
           }
         ]);
 

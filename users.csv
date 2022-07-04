@@ -1,35 +1,36 @@
-﻿Nome,Cognome,Email Gmail per Cartella Condivisa,Username github,Slack ID
-Arturo,Arnò,harth.fonz@gmail.com,fonzhousefonzie,U03A1DDE2GY,
-Michael,Bombini,bombini.michael@gmail.com,Michael-Bombini,U038W8Q2L2K,
-Giuseppe Alejandro,Brancaleon Amador,brancaleon.giuseppe@gmail.com,br4nc4,U039B1WCK4J,
-Danilo,Bronzo,danilo.bronz@gmail.com,bronzo97,U03A1CTFBB2,
-Silvia,Canepa,silviacanepa.w@gmail.com,silviawolves,U039AS1DCUB,
-Francesco,Capurso,fracabu@gmail.com,fracabu,U039PF6C9L1,
-Daniele ,Ciciarello,me@danieleciciarello.com,DanCiciarello,U03A0MME0LQ,
-Debora ,De Felice,deboradefelice95@gmail.com,Debby95,U03983JLY5B,
-Luca,Dercole,luca.dercole97@gmail.com,Spud97,U038WHU9J23,
-Paolo,Di Giovanni,paolodigiovanni27@gmail.com,SeanBitter,U039D6ZQ3A8,
-Giacomo,Di Nardo,giacomodinardo@gmail.com,GiacomoDiNardo,U038WCWHW95,
-Biagio,Ferro,ferro.biagio@gmail.com,bia9400,U0394US0CFQ,
-Luca,Francesconi,luca.francesconi1995@gmail.com,luketto-dev,U039PGFSGLR,
-Lorenzo,Iacovone,lorenzo.iacovone.work@gmail.com,javoxpl,U039BGTEB19,
-Felice,Laterza,felice.laterza93@gmail.com,felicetto13,U039DG9BCSG,
-Marius,Leica,mariusleica@gmail.com,marius-leica,U02BXMF22H4,
-Matteo,Loddo,loddomatteo96@gmail.com,MatteoLoddo,U038X27RZHV,
-Pasquale,Loizzo,loizzo.pasqualino@gmail.com,Minino99,U039DS499QC,
-Erica,Mancini,ericamanc93@gmail.com,erica201193,U038X0TSTB9,
-Luca,Matteotti,lucamatteotti01@gmail.com,Luchito37,U039PQHGQ6M,
-Alessio,Mazzella,mazzellaalessio6@gmail.com,Al-E-00,U03A0NUPZQQ,
-Anxhela,Meta,anxhelameta318@gmail.com,meta-ela,U03A0K9C0D6,
-Andrea,Nicastro,andreanicastro1994@gmail.com,NickAstley,U038W9XDR4P,
-Pietro,Pace,piero.pace88@gmail.com,PieroPace,U03980XPGKF,
-Luca,Piccinno,lucapiccinno64@gmail.com,LucaSk-x,U039Q94T01F,
-Enrico,Piombini,piombini.enrico@gmail.com,EnricoPiombini,U03980FMYCD,
-Paolo,Pugliese,paolo.pugliese1991@gmail.com,paolopu91,U039B8BPKPU,
-Matteo ,Sacchi,matteosacchi94@gmail.com,SAX-94,U039DL28676,
-Stefano ,Saccocci,stefano.saccocci.93@gmail.com,StefanoSax93,U039PFFGZ1P,
-Fernando,Silvera,fernando.silvera02@gmail.com,FernandoSilvera,U03A1481GTA,
-Anna ,Tassone,anna.tassone93@gmail.com,Anna93803,U039B57C4AF,
-Constantin Andrei,Todirascu,andrei.todirascu@gmail.com,constantinandrei,U039PS28HG9,
-Simone,Trunfio,simonetrunfio96@gmail.com,Trusimo,U039B3QTGF4,
-Edoardo,Vanali,vanaliedoardo@gmail.com,Edoardo22,U038WSFLT63
+id,nome,cognome,gitusername
+1,Marius,Dulce,dulcetiseduce1
+2,Arturo,Arnò,fonzhousefonzie
+3,Michael,Bombini,Michael-Bombini
+4,Giuseppe Alejandro,Brancaleon Amador,br4nc4
+5,Danilo,Bronzo,bronzo97
+6,Silvia,Canepa,silviawolves
+7,Francesco,Capurso,fracabu
+8,Daniele,Ciciarello,DanCiciarello
+9,Debora,De Felice,Debby95
+10,Luca,Dercole,Spud97
+11,Paolo,Di Giovanni,SeanBitter
+12,Giacomo,Di Nardo,GiacomoDiNardo
+13,Biagio,Ferro,bia9400
+14,Luca,Francesconi,luketto-dev
+15,Lorenzo,Iacovone,javoxpl
+16,Felice,Laterza,felicetto13
+17,Marius,Leica,marius-leica
+18,Matteo,Loddo,MatteoLoddo
+19,Pasquale,Loizzo,Minino99
+20,Erica,Mancini,erica201193
+21,Luca,Matteotti,Luchito37
+22,Alessio,Mazzella,Al-E-00
+23,Anxhela,Meta,meta-ela
+24,Andrea,Nicastro,NickAstley
+25,Pietro,Pace,PieroPace
+26,Luca,Piccinno,LucaSk-x
+27,Enrico,Piombini,EnricoPiombini
+28,Paolo,Pugliese,paolopu91
+29,Matteo,Sacchi,SAX-94
+30,Stefano,Saccocci,StefanoSax93
+31,Fernando,Silvera,FernandoSilvera
+32,Anna,Tassone,Anna93803
+33,Constantin Andrei,Todirascu,constantinandrei
+34,Simone,Trunfio,Trusimo
+35,Edoardo,Vanali,Edoardo22

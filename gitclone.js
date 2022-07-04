@@ -20,12 +20,12 @@ function gitClone(ex) {
         }
         shell.cd(basefolder);
 
-        console.log('################# \n');
-        console.log(row['Cognome'], row['Username github']);
+        console.log('------------------------------------------------------------------- \n');
+        console.log(row['nome'], row['cognome'],'@'+row['gitusername']);
         //console.log(row);
 
-        if (fs.existsSync(row['Username github'])) {
-          shell.cd(row['Username github']);
+        if (fs.existsSync(row['gitusername'])) {
+          shell.cd(row['gitusername']);
           if (fs.existsSync(ex)) {
             shell.cd(ex);
 
@@ -35,12 +35,12 @@ function gitClone(ex) {
             shell.cd('..');
 
           } else {
-            shell.exec(baseURL.toString() + row['Username github'] + '/' + ex + '.git');
+            shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
           }
           shell.cd('..');
         }
         else {
-          shell.mkdir('-p', row['Username github']);
+          shell.mkdir('-p', row['gitusername']);
         }
         shell.cd('..');
       })
