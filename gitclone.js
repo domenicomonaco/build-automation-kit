@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 //LOAD ENNV
 dotenv.config();
 
-
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
@@ -49,6 +48,7 @@ function gitClone(ex) {
   }
 
 }
+
 
 for (let i = 1; i <process.env.LOOPN;i++) {
   gitClone(process.env.REPONAME);
