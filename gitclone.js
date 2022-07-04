@@ -15,8 +15,11 @@ function gitClone(ex) {
     fs.createReadStream('users.csv')
       .pipe(csv())
       .on('data', (row) => {
+        if (fs.existsSync(basefolder)==false){
+          shell.mkdir('-p', basefolder);
+        }
         shell.cd(basefolder);
-        
+
         console.log('################# \n');
         console.log(row['Cognome'], row['Username github']);
         //console.log(row);

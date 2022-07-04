@@ -61,7 +61,6 @@ function install(ex) {
                   shell.cd(ex);
                   shell.exec('git reset --hard HEAD');
                   shell.exec('git pull --force');
-
                 }
               }
             }
