@@ -11,6 +11,7 @@
     "run": "node installrun.js"
   },
   "dependencies": {
+    "cli-color": "^2.0.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.1",
     "prompts": "^2.4.2",

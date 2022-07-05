@@ -3,6 +3,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
+var clc = require("cli-color");
 
 //LOAD ENNV
 dotenv.config();
@@ -18,7 +19,10 @@ function gitClone(ex) {
       .on('data', (row) => {
 
         console.log('------------------------------------------------------------------- \n');
-        console.log(row['nome'], row['cognome'], '@' + row['gitusername']);
+        console.log(
+          clc.red(row['nome']), 
+          clc.green(row['cognome']), 
+          clc.yellow('@' + row['gitusername']));
 
         if (fs.existsSync(basefolder) == false) {
           shell.mkdir('-p', basefolder);
@@ -58,14 +62,13 @@ function gitClone(ex) {
     type: 'number',
     name: 'value',
     message: 'Quanti cicli vuoi fare?',
-    initial:1,
-    validate: value => value < 1 ? `deve essere almeno 1` : true
+    initial: 1,
+    validate: value => value == 0 ? `deve essere almeno 1` : true
   });
 
   for (let i = 0; i <= parseInt(response['value']); i++) {
     gitClone(process.env.REPONAME);
   }
-
   
 })();
 
