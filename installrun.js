@@ -10,11 +10,18 @@ const open=require('open');
 dotenv.config();
 
 
+function git_reset_and_pull(){
+  shell.exec('git reset --hard HEAD');
+  shell.exec('git pull --force');
+}
+
+function git_rm_and_clone(ex, url){
+  shell.rm('-rf', ex);
+  shell.exec(url + '.git');
+}
+
 function install(ex) {
-
-
   const basefolder = process.env.BASEFOLDER;
-
   let listofuser = [];
   fs.createReadStream('users.csv')
     .pipe(csv())
@@ -61,8 +68,8 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  shell.exec('git reset --hard HEAD');
-                  shell.exec('git pull --force');
+                  //GIT RESET AND PULL
+                  git_reset_and_pull();
                 }
               }
             }
@@ -101,8 +108,8 @@ function install(ex) {
               shell.cd(basefolder);
               if (fs.existsSync(response['value'])) {
                 shell.cd(response['value']);
-                shell.rm('-rf', ex);
-                shell.exec(process.env.BASEGITURL.toString() + response['value'] + '/' + ex + '.git');
+                const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
+                git_rm_and_clone(ex,thisurl);
               }
             }
           } else if(what['value']=='openbrowser'){
@@ -112,9 +119,8 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  shell.exec('git reset --hard HEAD');
-                  shell.exec('git pull --force');
-                  open('http://main.loc/build-automation-kit/students/'+response['value']+'/'+ex);
+                  git_reset_and_pull();
+                  open(process.env.BASELOCALURL.toString()+response['value']+'/'+ex);
                 }
               }
             }
