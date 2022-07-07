@@ -4,18 +4,18 @@ const csv = require('csv-parser');
 const { exit } = require('process');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
-const open=require('open');
+const open = require('open');
 
 //LOAD ENNV
 dotenv.config();
 
 
-function git_reset_and_pull(){
+function git_reset_and_pull() {
   shell.exec('git reset --hard HEAD');
   shell.exec('git pull --force');
 }
 
-function git_rm_and_clone(ex, url){
+function git_rm_and_clone(ex, url) {
   shell.rm('-rf', ex);
   shell.exec(url + '.git');
 }
@@ -26,7 +26,6 @@ function install(ex) {
   fs.createReadStream('users.csv')
     .pipe(csv())
     .on('data', (row) => {
-
       listofuser.push({
         title: row['cognome'] + ' ' + row['nome'] + ' @' + row['gitusername'],
         value: row['gitusername']
@@ -55,7 +54,7 @@ function install(ex) {
                 { title: 'Install & Run', value: 'instrun' },
                 { title: 'Pull, Install & Run', value: 'upinstrun' },
                 { title: 'Delete locally and Re-Clone', value: 'reset' },
-                { title: 'Pull & Open to the browser', value: 'openbrowser'}],
+                { title: 'Pull & Open to the browser', value: 'openbrowser' }],
               initial: 4
             }
           ]);
@@ -68,7 +67,6 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  //GIT RESET AND PULL
                   git_reset_and_pull();
                 }
               }
@@ -94,25 +92,24 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  shell.exec('git reset --hard HEAD');
-                  shell.exec('git pull --force');
+                  git_reset_and_pull();
                   shell.exec('nvm use ' + process.env.NODEVER);
                   shell.exec('npm i');
                   shell.exec('npm run serve');
+
                 }
               }
             }
           } else if (what['value'] == 'reset') {
-
             if (fs.existsSync(basefolder)) {
               shell.cd(basefolder);
               if (fs.existsSync(response['value'])) {
                 shell.cd(response['value']);
                 const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
-                git_rm_and_clone(ex,thisurl);
+                git_rm_and_clone(ex, thisurl);
               }
             }
-          } else if(what['value']=='openbrowser'){
+          } else if (what['value'] == 'openbrowser') {
             if (fs.existsSync(basefolder)) {
               shell.cd(basefolder);
               if (fs.existsSync(response['value'])) {
@@ -120,7 +117,7 @@ function install(ex) {
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
                   git_reset_and_pull();
-                  open(process.env.BASELOCALURL.toString()+response['value']+'/'+ex);
+                  open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
                 }
               }
             }

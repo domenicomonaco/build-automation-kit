@@ -7,10 +7,10 @@
   "license": "GPL v3",
   "scripts": {
     "git": "node git-workflow.js",
-    "builds": "node builds.js",
-    "clone": "node gitclone.js",
-    "cleans": "node cleans.js",
-    "run": "node installrun.js"
+    "git:builds": "node builds.js",
+    "git:clone": "node gitclone.js",
+    "git:cleans": "node cleans.js",
+    "prj:run": "node installrun.js"
   },
   "dependencies": {
     "cli-color": "^2.0.3",
