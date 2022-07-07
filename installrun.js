@@ -4,6 +4,7 @@ const csv = require('csv-parser');
 const { exit } = require('process');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
+const open=require('open');
 
 //LOAD ENNV
 dotenv.config();
@@ -46,8 +47,9 @@ function install(ex) {
                 { title: 'Pull from Git', value: 'update' },
                 { title: 'Install & Run', value: 'instrun' },
                 { title: 'Pull, Install & Run', value: 'upinstrun' },
-                { title: 'Delete locally and Re-Clone', value: 'reset' }],
-              initial: 2
+                { title: 'Delete locally and Re-Clone', value: 'reset' },
+                { title: 'Pull & Open to the browser', value: 'openbrowser'}],
+              initial: 4
             }
           ]);
 
@@ -74,7 +76,6 @@ function install(ex) {
                   shell.exec('nvm use ' + process.env.NODEVER);
                   shell.exec('npm i');
                   shell.exec('npm run serve');
-
                 }
               }
             }
@@ -91,7 +92,6 @@ function install(ex) {
                   shell.exec('nvm use ' + process.env.NODEVER);
                   shell.exec('npm i');
                   shell.exec('npm run serve');
-
                 }
               }
             }
@@ -103,6 +103,19 @@ function install(ex) {
                 shell.cd(response['value']);
                 shell.rm('-rf', ex);
                 shell.exec(process.env.BASEGITURL.toString() + response['value'] + '/' + ex + '.git');
+              }
+            }
+          } else if(what['value']=='openbrowser'){
+            if (fs.existsSync(basefolder)) {
+              shell.cd(basefolder);
+              if (fs.existsSync(response['value'])) {
+                shell.cd(response['value']);
+                if (fs.existsSync(ex)) {
+                  shell.cd(ex);
+                  shell.exec('git reset --hard HEAD');
+                  shell.exec('git pull --force');
+                  open('http://main.loc/build-automation-kit/students/'+response['value']+'/'+ex);
+                }
               }
             }
           }
