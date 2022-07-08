@@ -4,9 +4,11 @@ const csv = require('csv-parser');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
 var clc = require("cli-color");
+require('shelljs-plugin-clear');
 
 //LOAD ENNV
 dotenv.config();
+shell.clear();
 
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
