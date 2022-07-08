@@ -13,6 +13,12 @@
 
 Clone the source files of the theme and navigate into the theme's root directory. Run `npm install`. You can view the `package.json` file to see which scripts are included.
 
+#### List of Users
+List of users need to be stored into *users.csv* and need contain id, nome, cognome and gitusername columns at least
+
+#### Configuration
+Configuration is stored into *.env* file
+
 ## Authors and License
 Copyright © 2022 [Tecnologie per Persone di Domenico Monaco](https://www.tecnologieperpersone.it) 
 
