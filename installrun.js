@@ -5,6 +5,7 @@ const { exit } = require('process');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
 const open = require('open');
+var clc = require("cli-color");
 
 //LOAD ENNV
 dotenv.config();
@@ -116,8 +117,11 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
+                  console.log(clc.bgCyanBright('[>] '+ ex));
                   git_reset_and_pull();
                   open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
+                }else{
+                  console.log(clc.bgRedBright('[X] Not exist folder: '+ ex));
                 }
               }
             }

@@ -20,8 +20,8 @@ function gitClone(ex) {
 
         console.log('------------------------------------------------------------------- \n');
         console.log(
-          clc.red(row['nome']), 
-          clc.green(row['cognome']), 
+          clc.red(row['nome']),
+          clc.green(row['cognome']),
           clc.yellow('@' + row['gitusername']));
 
         if (fs.existsSync(basefolder) == false) {
@@ -34,20 +34,24 @@ function gitClone(ex) {
         }
         shell.cd(row['gitusername']);
 
+        console.log(clc.bgCyanBright('[>] '+ ex));
         if (fs.existsSync(ex)) {
           shell.cd(ex);
 
           shell.exec('git reset --hard HEAD');
           shell.exec('git pull --force');
 
+          console.log(clc.bgGreenBright('PULLED: ' + ex));
+
           shell.cd('..');
 
         } else {
+          console.log(clc.bgRed('NOT EXIST folder: ' + ex));
           shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
         }
-    
+
         shell.cd('../..');
-    
+
       })
       .on('end', () => {
         console.log('CSV file successfully processed');
@@ -69,6 +73,6 @@ function gitClone(ex) {
   for (let i = 0; i <= parseInt(response['value']); i++) {
     gitClone(process.env.REPONAME);
   }
-  
+
 })();
 

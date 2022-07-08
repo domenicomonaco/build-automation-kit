@@ -12,8 +12,6 @@ function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
 
-  //if (fs.existsSync(basefolder)) {
-
     fs.createReadStream('users.csv')
       .pipe(csv())
       .on('data', (row) => {
@@ -32,39 +30,26 @@ function gitClone(ex) {
         if (fs.existsSync(row['gitusername']) == false) {
           shell.mkdir('-p', row['gitusername']);
         }
+
         shell.cd(row['gitusername']);
 
         if (fs.existsSync(ex)) {
-
           shell.rm('-rf', ex);
-
-        } else {
-          shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+          console.log(clc.bgRedBright('DELETED: ' + ex));
+        }else{
+          console.log(clc.bgMagenta('NOT EXIST: ' + ex));
         }
 
         shell.cd('../..');
 
       })
       .on('end', () => {
-        console.log('CSV file successfully processed');
+        console.log(clc.bgGreenBright('CSV file successfully processed'));
       });
 
   //}
 
 }
 
-(async () => {
-  const response = await prompts({
-    type: 'number',
-    name: 'value',
-    message: 'Quanti cicli vuoi fare?',
-    initial: 1,
-    validate: value => value == 0 ? `deve essere almeno 1` : true
-  });
-
-  for (let i = 0; i <= parseInt(response['value']); i++) {
-    gitClone(process.env.REPONAME);
-  }
-
-})();
+gitClone(process.env.REPONAME);
 
