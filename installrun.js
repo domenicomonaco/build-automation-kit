@@ -1,7 +1,6 @@
-const shell = require('shelljs')
+const shell = require('shelljs');
 const fs = require('fs');
 const csv = require('csv-parser');
-const { exit } = require('process');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
 const open = require('open');
@@ -10,16 +9,7 @@ var clc = require("cli-color");
 //LOAD ENNV
 dotenv.config();
 
-
-function git_reset_and_pull() {
-  shell.exec('git reset --hard HEAD');
-  shell.exec('git pull --force');
-}
-
-function git_rm_and_clone(ex, url) {
-  shell.rm('-rf', ex);
-  shell.exec(url + '.git');
-}
+const git = require('./lib/gitop.js');
 
 function install(ex) {
   const basefolder = process.env.BASEFOLDER;
@@ -68,7 +58,7 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  git_reset_and_pull();
+                  git.git_reset_and_pull();
                 }
               }
             }
@@ -93,7 +83,7 @@ function install(ex) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
-                  git_reset_and_pull();
+                  git.git_reset_and_pull();
                   shell.exec('nvm use ' + process.env.NODEVER);
                   shell.exec('npm i');
                   shell.exec('npm run serve');
@@ -107,7 +97,7 @@ function install(ex) {
               if (fs.existsSync(response['value'])) {
                 shell.cd(response['value']);
                 const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
-                git_rm_and_clone(ex, thisurl);
+                git.git_rm_and_clone(ex, thisurl);
               }
             }
           } else if (what['value'] == 'openbrowser') {
@@ -118,7 +108,7 @@ function install(ex) {
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
                   console.log(clc.bgCyanBright('[>] '+ ex));
-                  git_reset_and_pull();
+                  git.git_reset_and_pull();
                   open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
                 }else{
                   console.log(clc.bgRedBright('[X] Not exist folder: '+ ex));

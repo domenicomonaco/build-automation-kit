@@ -6,6 +6,8 @@ const prompts = require('prompts');
 var clc = require("cli-color");
 require('shelljs-plugin-clear');
 
+const git = require('./lib/gitop.js');
+
 //LOAD ENNV
 dotenv.config();
 shell.clear();
@@ -41,8 +43,7 @@ function gitClone(ex) {
         if (fs.existsSync(ex)) {
           shell.cd(ex);
 
-          shell.exec('git reset --hard HEAD');
-          shell.exec('git pull --force');
+          git.git_reset_and_pull();
 
           console.log(clc.bgGreenBright('PULLED: ' + ex));
 
