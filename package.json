@@ -10,6 +10,7 @@
     "git:builds": "node builds.js",
     "git:clone": "node gitclone.js",
     "git:cleans": "node cleans.js",
+    "git:clonedelete": "node cleans.js && node gitclone.js",
     "prj:run": "node installrun.js"
   },
   "dependencies": {
