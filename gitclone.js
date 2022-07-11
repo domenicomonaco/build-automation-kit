@@ -22,8 +22,7 @@ function gitClone(ex) {
       .pipe(csv())
       .on('data', (row) => {
         shell.clear();
-
-        console.log('------------------------------------------------------------------------------------ \n');
+        console.log('( ͡° ͜ ͡° ) BUILD AUTOMATION KIT |--------------------------------------------- \n');
         console.log(
           clc.red(row['nome']),
           clc.green(row['cognome']),
