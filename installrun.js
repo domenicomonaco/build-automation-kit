@@ -4,7 +4,9 @@ const csv = require('csv-parser');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
 const open = require('open');
+
 var clc = require("cli-color");
+require('shelljs-plugin-clear');
 
 //LOAD ENNV
 dotenv.config();
@@ -14,6 +16,8 @@ const git = require('./lib/gitop.js');
 function install(ex) {
   const basefolder = process.env.BASEFOLDER;
   let listofuser = [];
+
+
   fs.createReadStream('users.csv')
     .pipe(csv())
     .on('data', (row) => {
@@ -22,103 +26,128 @@ function install(ex) {
         value: row['gitusername']
       });
     }).on('end', () => {
-      (async () => {
-        const response = await prompts([
-          {
-            type: 'autocomplete',
-            name: 'value',
-            message: 'Pick a user',
-            choices: listofuser,
-            initial: 0
-          }
-        ]);
 
-        //console.log(response);
+      function prompt() {
         (async () => {
-          const what = await prompts([
+          const response = await prompts([
             {
               type: 'autocomplete',
               name: 'value',
-              message: 'Pick a action',
-              choices: [
-                { title: 'Pull from Git', value: 'update' },
-                { title: 'Install & Run', value: 'instrun' },
-                { title: 'Pull, Install & Run', value: 'upinstrun' },
-                { title: 'Delete locally and Re-Clone', value: 'reset' },
-                { title: 'Pull & Open to the browser', value: 'openbrowser' }],
-              initial: 4
+              message: 'Pick a user',
+              choices: listofuser,
+              initial: 0
             }
           ]);
 
-          //console.log(what);
-          if (what['value'] == 'update') {
-            if (fs.existsSync(basefolder)) {
-              shell.cd(basefolder);
-              if (fs.existsSync(response['value'])) {
-                shell.cd(response['value']);
-                if (fs.existsSync(ex)) {
-                  shell.cd(ex);
-                  git.git_reset_and_pull();
-                }
+          //console.log(response);
+          (async () => {
+            const what = await prompts([
+              {
+                type: 'autocomplete',
+                name: 'value',
+                message: 'Pick a action',
+                choices: [
+                  { title: 'Pull from Git', value: 'update' },
+                  { title: 'Install & Run', value: 'instrun' },
+                  { title: 'Pull, Install & Run', value: 'upinstrun' },
+                  { title: 'Delete locally and Re-Clone', value: 'reset' },
+                  { title: 'Pull & Open to the browser', value: 'openbrowser' }],
+                initial: 4
               }
-            }
-          } else if (what['value'] == 'instrun') {
-            if (fs.existsSync(basefolder)) {
-              shell.cd(basefolder);
-              if (fs.existsSync(response['value'])) {
-                shell.cd(response['value']);
-                if (fs.existsSync(ex)) {
-                  shell.cd(ex);
-                  shell.exec('nvm use ' + process.env.NODEVER);
-                  shell.exec('npm i');
-                  shell.exec('npm run serve');
-                }
-              }
-            }
-          } else if (what['value'] == 'upinstrun') {
+            ]);
 
-            if (fs.existsSync(basefolder)) {
-              shell.cd(basefolder);
-              if (fs.existsSync(response['value'])) {
-                shell.cd(response['value']);
-                if (fs.existsSync(ex)) {
-                  shell.cd(ex);
-                  git.git_reset_and_pull();
-                  shell.exec('nvm use ' + process.env.NODEVER);
-                  shell.exec('npm i');
-                  shell.exec('npm run serve');
+            //console.log(what);
+            if (what['value'] == 'update') {
+              if (fs.existsSync(basefolder)) {
+                shell.cd(basefolder);
+                if (fs.existsSync(response['value'])) {
+                  shell.cd(response['value']);
+                  if (fs.existsSync(ex)) {
+                    shell.cd(ex);
+                    git.git_reset_and_pull();
+                  }
+                }
+              }
+            } else if (what['value'] == 'instrun') {
+              if (fs.existsSync(basefolder)) {
+                shell.cd(basefolder);
+                if (fs.existsSync(response['value'])) {
+                  shell.cd(response['value']);
+                  if (fs.existsSync(ex)) {
+                    shell.cd(ex);
+                    shell.exec('nvm use ' + process.env.NODEVER);
+                    shell.exec('npm i');
+                    shell.exec('npm run serve');
+                  }
+                }
+              }
+            } else if (what['value'] == 'upinstrun') {
 
+              if (fs.existsSync(basefolder)) {
+                shell.cd(basefolder);
+                if (fs.existsSync(response['value'])) {
+                  shell.cd(response['value']);
+                  if (fs.existsSync(ex)) {
+                    shell.cd(ex);
+                    git.git_reset_and_pull();
+                    shell.exec('nvm use ' + process.env.NODEVER);
+                    shell.exec('npm i');
+                    shell.exec('npm run serve');
+
+                  }
+                }
+              }
+            } else if (what['value'] == 'reset') {
+              if (fs.existsSync(basefolder)) {
+                shell.cd(basefolder);
+                if (fs.existsSync(response['value'])) {
+                  shell.cd(response['value']);
+                  const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
+                  git.git_rm_and_clone(ex, thisurl);
+                }
+              }
+            } else if (what['value'] == 'openbrowser') {
+              if (fs.existsSync(basefolder)) {
+                shell.cd(basefolder);
+                if (fs.existsSync(response['value'])) {
+                  shell.cd(response['value']);
+                  if (fs.existsSync(ex)) {
+                    shell.cd(ex);
+                    console.log(clc.bgCyanBright('[>] ' + ex));
+                    git.git_reset_and_pull();
+                    open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
+                  } else {
+                    console.log(clc.bgRedBright('[X] Not exist folder: ' + ex));
+                  }
                 }
               }
             }
-          } else if (what['value'] == 'reset') {
-            if (fs.existsSync(basefolder)) {
-              shell.cd(basefolder);
-              if (fs.existsSync(response['value'])) {
-                shell.cd(response['value']);
-                const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
-                git.git_rm_and_clone(ex, thisurl);
+
+
+            const rep = await prompts([
+              {
+                type: 'autocomplete',
+                name: 'value',
+                message: 'Pick a action',
+                choices: [
+                  { title: 'Another', value: 'another' },
+                  { title: 'Exit', value: 'exit' }],
+                initial: 0
               }
+            ]);
+
+            if (rep['value'] == 'another') {
+              shell.clear();
+              prompt();
+            } else if (rep['value'] == 'exit') {
+              process.exit(1);
             }
-          } else if (what['value'] == 'openbrowser') {
-            if (fs.existsSync(basefolder)) {
-              shell.cd(basefolder);
-              if (fs.existsSync(response['value'])) {
-                shell.cd(response['value']);
-                if (fs.existsSync(ex)) {
-                  shell.cd(ex);
-                  console.log(clc.bgCyanBright('[>] '+ ex));
-                  git.git_reset_and_pull();
-                  open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
-                }else{
-                  console.log(clc.bgRedBright('[X] Not exist folder: '+ ex));
-                }
-              }
-            }
-          }
+          })();
         })();
-      })();
+      }
+      prompt();
     });
+
 }
 
 install(process.env.REPONAME);
