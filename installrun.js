@@ -4,7 +4,7 @@ const csv = require('csv-parser');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
 const open = require('open');
-
+const visuals = require('./lib/visuals.js');
 var clc = require("cli-color");
 require('shelljs-plugin-clear');
 
@@ -28,6 +28,9 @@ function install(ex) {
     }).on('end', () => {
 
       function prompt() {
+
+        visuals.header();
+
         (async () => {
           const response = await prompts([
             {
@@ -39,7 +42,6 @@ function install(ex) {
             }
           ]);
 
-          //console.log(response);
           (async () => {
             const what = await prompts([
               {
@@ -130,7 +132,7 @@ function install(ex) {
                 name: 'value',
                 message: 'Pick a action',
                 choices: [
-                  { title: 'Another', value: 'another' },
+                  { title: 'Restart', value: 'restart' },
                   { title: 'Exit', value: 'exit' }],
                 initial: 0
               }
