@@ -41,6 +41,7 @@ function gitClone(ex) {
 
         console.log(clc.bgCyanBright('[>] '+ ex));
         if (fs.existsSync(ex)) {
+          console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERr: ' + ex));
           shell.cd(ex);
 
           git.git_reset_and_pull();
@@ -50,7 +51,7 @@ function gitClone(ex) {
           shell.cd('..');
 
         } else {
-          console.log(clc.bgRed('NOT EXIST folder: ' + ex));
+          console.log(clc.bgRed('[X] NOT EXIST FOLDER: ' + ex));
           shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
         }
 

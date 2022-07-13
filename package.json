@@ -18,6 +18,7 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.1",
     "open": "^8.4.0",
+    "path": "^0.12.7",
     "prompts": "^2.4.2",
     "shelljs": "^0.8.5",
     "shelljs-plugin-clear": "^0.2.1"
