@@ -15,9 +15,9 @@ dotenv.config();
 const git = require('./lib/gitop.js');
 
 function install(ex) {
+  const dirPath = path.join(__dirname);
   const basefolder = process.env.BASEFOLDER;
   let listofuser = [];
-
 
   fs.createReadStream('users.csv')
     .pipe(csv())
@@ -140,7 +140,7 @@ function install(ex) {
           ]);
 
           if (rep['value'] == 'restart') {
-            const dirPath = path.join(__dirname);
+
 
             shell.cd(dirPath);
             prompt();
