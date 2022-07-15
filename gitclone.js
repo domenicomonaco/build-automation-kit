@@ -3,27 +3,33 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const dotenv = require("dotenv");
 const prompts = require('prompts');
-var clc = require("cli-color");
+const clc = require("cli-color");
 require('shelljs-plugin-clear');
+const open = require('open');
+
+const visuals = require('./lib/visuals.js');
 
 const git = require('./lib/gitop.js');
+require('./lib/args.js');
 
 //LOAD ENNV
 dotenv.config();
 shell.clear();
 
+
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
 
-  //if (fs.existsSync(basefolder)) {
+    //open to the broowser
+    open(process.env.BASELOCALURL.toString());
 
     fs.createReadStream('users.csv')
       .pipe(csv())
       .on('data', (row) => {
-        shell.clear();
-        console.log('        //////  \r');
-        console.log('___oOOo( ͡° ͜ ͡° )oOOo____BUILD AUTOMATION KIT _____________________ \n');
+
+        visuals.header();
+
         console.log(
           clc.red(row['nome']),
           clc.green(row['cognome']),
@@ -33,6 +39,7 @@ function gitClone(ex) {
           shell.mkdir('-p', basefolder);
         }
         shell.cd(basefolder);
+
 
         if (fs.existsSync(row['gitusername']) == false) {
           shell.mkdir('-p', row['gitusername']);

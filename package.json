@@ -21,6 +21,7 @@
     "path": "^0.12.7",
     "prompts": "^2.4.2",
     "shelljs": "^0.8.5",
-    "shelljs-plugin-clear": "^0.2.1"
+    "shelljs-plugin-clear": "^0.2.1",
+    "yargs": "^17.5.1"
   }
 }
