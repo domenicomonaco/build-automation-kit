@@ -17,12 +17,12 @@ dotenv.config();
 shell.clear();
 
 
+
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
 
     //open to the broowser
-    open(process.env.BASELOCALURL.toString());
 
     fs.createReadStream('users.csv')
       .pipe(csv())
@@ -82,9 +82,12 @@ function gitClone(ex) {
     validate: value => value == 0 ? `deve essere almeno 1` : true
   });
 
+  open(process.env.BASELOCALURL.toString());
+
   for (let i = 0; i <= parseInt(response['value']); i++) {
     gitClone(process.env.REPONAME);
   }
+
 
 })();
 

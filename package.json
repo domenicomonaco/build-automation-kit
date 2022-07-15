@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "author": "Tecnologie per Persone di Domenico Monaco <https://www.tecnologieperpersone.it>",
-  "license": "GPL v3",
+  "license": "GNU GPL v3 or later",
   "scripts": {
     "git": "node git-workflow.js",
     "git:builds": "node builds.js",
