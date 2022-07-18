@@ -16,8 +16,6 @@ require('./lib/args.js');
 dotenv.config();
 shell.clear();
 
-
-
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
