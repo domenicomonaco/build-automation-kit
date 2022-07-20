@@ -10,11 +10,18 @@ const open = require('open');
 const visuals = require('./lib/visuals.js');
 
 const git = require('./lib/gitop.js');
-require('./lib/args.js');
+const {argv} = require('./lib/args.js');
 
 //LOAD ENNV
 dotenv.config();
 shell.clear();
+
+let reponame='';
+if(argv.name!=null){
+  reponame = argv.name;
+}else{
+  reponame = process.env.REPONAME;
+}
 
 function gitClone(ex) {
   const baseURL = process.env.BASEGITURL;
@@ -82,10 +89,10 @@ function gitClone(ex) {
 
   open(process.env.BASELOCALURL.toString());
 
-  for (let i = 0; i <= parseInt(response['value']); i++) {
-    gitClone(process.env.REPONAME);
-  }
 
+  for (let i = 0; i <= parseInt(response['value']); i++) {
+    gitClone(reponame);
+  }
 
 })();
 
