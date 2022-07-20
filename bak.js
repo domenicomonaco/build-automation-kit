@@ -14,6 +14,9 @@ const git = require('./lib/gitop.js');
 dotenv.config();
 shell.clear();
 
+//print header
+visuals.header();
+
 const { argv } = require("yargs")
   .command('update [-f filename] [--notopen]', '', (yargs) => {
     console.log(yargs.argv);
@@ -51,5 +54,6 @@ const { argv } = require("yargs")
   }).demandCommand(1, clc.bgRed('You need at least one command before moving on'))
   .help('h')
   .alias('h', 'help')
-  .epilogue('for more information, find the documentation at https://tecnologieperpersone.it')
+  .epilogue(
+    'for more information, find the documentation at https://tecnologieperpersone.it')
   .argv;
