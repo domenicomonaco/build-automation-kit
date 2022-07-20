@@ -25,12 +25,7 @@ const { argv } = require("yargs")
     console.log(clc.magenta(
       'Hai slezionato:'
     ) + clc.bgMagenta('clean'));
-  }).command('\*', '', (yargs) => {
-  }, function (argv) {
-    console.log(clc.bgRedBright('comando non riconosciuto! <script>.js --help per visualizzare tutti i comandi'));
-
-  })
-  .options({
+  }).options({
     'f': {
       alias: 'file',
       demandOption: true,
@@ -53,4 +48,8 @@ const { argv } = require("yargs")
       describe: 'name of repo, default was taken from .env',
       type: 'string'
     }
-  }).argv;
+  }).demandCommand(1, clc.bgRed('You need at least one command before moving on'))
+  .help('h')
+  .alias('h', 'help')
+  .epilogue('for more information, find the documentation at https://tecnologieperpersone.it')
+  .argv;
