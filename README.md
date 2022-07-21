@@ -20,22 +20,22 @@ List of users need to be stored into *users.csv* and need contain id, nome, cogn
 Configuration is stored into *.env* file
 
 #### Usage
-    
-    node bak <command>
+          
+      bak <command>
 
-    Comandi:
-      node bak update [-f filename] [--notopen]
-      node bak clean [-f filename] [--notopen]
+      Comandi:
+        bak update [-f filename] [--notopen]
+        bak delete [-f filename] [--notopen]
 
-    Opzioni:
-          --version  Mostra il numero di versione                         [booleano]
-      -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
-          --notopen  no open browser                 [booleano] [predefinito: false]
-      -r, --repo     name of repo, default was taken from .env
-                                          [stringa] [richiesto] [predefinito: false]
-      -h, --help     Mostra la schermata di aiuto                         [booleano]
+      Opzioni:
+            --version  Mostra il numero di versione                         [booleano]
+        -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
+            --notopen  no open browser                 [booleano] [predefinito: false]
+        -r, --repo     name of repo, default was taken from .env
+                                  [stringa] [richiesto] [predefinito: "db-university"]
+        -h, --help     Mostra la schermata di aiuto                         [booleano]
 
-    for more information, find the documentation at https://tecnologieperpersone.it
+      for more information, find the documentation at https://tecnologieperpersone.it
 
 ## Authors and License
 Copyright © 2022 [Tecnologie per Persone di Domenico Monaco](https://www.tecnologieperpersone.it) 
