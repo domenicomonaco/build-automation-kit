@@ -9,7 +9,7 @@ const open = require('open');
 
 const visuals = require('./lib/visuals.js');
 const git = require('./lib/gitop.js');
-
+const clones = require('./gitclone.js');
 //LOAD ENNV
 dotenv.config();
 shell.clear();
@@ -19,16 +19,19 @@ visuals.header();
 
 const { argv } = require("yargs")
   .command('update [-f filename] [--notopen]', '', (yargs) => {
-    console.log(yargs.argv);
-    console.log(clc.magenta(
-      'Hai slezionato:'
-    ) + clc.bgMagenta('update'));
-  }).command('clean [-f filename] [--notopen]', '', (yargs) => {
-  }, function (argv) {
-    console.log(clc.magenta(
-      'Hai slezionato:'
-    ) + clc.bgMagenta('clean'));
-  }).options({
+
+    console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('update'));
+    console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
+
+    clones.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
+
+  })
+  .command('delete [-f filename] [--notopen]',  '', (yargs) => {
+    console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('delete'));
+    console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
+
+  })
+  .options({
     'f': {
       alias: 'file',
       demandOption: true,
@@ -47,7 +50,7 @@ const { argv } = require("yargs")
     'repo': {
       alias: 'r',
       demandOption: true,
-      default: false,
+      default: process.env.REPONAME,
       describe: 'name of repo, default was taken from .env',
       type: 'string'
     }

@@ -20,8 +20,8 @@ function gitClone(ex) {
 
         console.log('------------------------------------------------------------------- \n');
         console.log(
-          clc.red(row['nome']), 
-          clc.green(row['cognome']), 
+          clc.red(row['nome']),
+          clc.green(row['cognome']),
           clc.yellow('@' + row['gitusername']));
 
         if (fs.existsSync(basefolder) == false) {
@@ -40,15 +40,15 @@ function gitClone(ex) {
           shell.exec('nvm use 16.15.1');
           shell.exec('npm i');
           shell.exec('npm run-script build');
-          
+
           shell.cd('..');
 
         } else {
           shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
         }
-    
+
         shell.cd('../..');
-    
+
       })
       .on('end', () => {
         console.log('CSV file successfully processed');
@@ -70,6 +70,6 @@ function gitClone(ex) {
   for (let i = 0; i <= parseInt(response['value']); i++) {
     gitClone(process.env.REPONAME);
   }
-  
+
 })();
 
