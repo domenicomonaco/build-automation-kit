@@ -1,7 +1,6 @@
 #!/bin/sh
 
-
+echo 'copy env';
+rm -rf _env;
 cp .env _env;
-git add . ;
-git commit -m 'deploy';
-git push;
+
