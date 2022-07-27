@@ -54,8 +54,9 @@ function install(ex) {
                 { title: 'Install & Run', value: 'instrun' },
                 { title: 'Pull, Install & Run', value: 'upinstrun' },
                 { title: 'Delete locally and Re-Clone', value: 'reset' },
-                { title: 'Pull & Open to the browser', value: 'openbrowser' }],
-              initial: 4
+                { title: 'Pull & Open to the browser', value: 'openbrowser' },
+                { title: 'Install Laravel and open browser', value: 'instalaravel' }],
+              initial: 5
             }
           ]);
 
@@ -119,6 +120,26 @@ function install(ex) {
                   console.log(clc.bgCyanBright('[>] ' + ex));
                   git.git_reset_and_pull();
                   open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex);
+                } else {
+                  console.log(clc.bgRedBright('[X] Not exist folder: ' + ex));
+                }
+              }
+            }
+          } else if (what['value'] == 'instalaravel') {
+            if (fs.existsSync(basefolder)) {
+              shell.cd(basefolder);
+              if (fs.existsSync(response['value'])) {
+                shell.cd(response['value']);
+                if (fs.existsSync(ex)) {
+                  console.log(clc.bgGreenBright('[V] Not exist folder: ' + ex));
+                  shell.cd(ex);
+                  console.log(clc.bgCyanBright('[>] ' + ex));
+                  git.git_reset_and_pull();
+
+                  console.log(clc.bgCyanBright('[>] ' +process.env.PATHDOCKER.toString() + response['value'] + '/' +ex +'/'));
+
+                  open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex + '/public');
+
                 } else {
                   console.log(clc.bgRedBright('[X] Not exist folder: ' + ex));
                 }
