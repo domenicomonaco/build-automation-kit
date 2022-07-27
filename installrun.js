@@ -136,7 +136,7 @@ function install(ex) {
                   console.log(clc.bgCyanBright('[>] ' + ex));
                   git.git_reset_and_pull();
 
-                  console.log(clc.bgCyanBright('[>] ' +process.env.PATHDOCKER.toString() + response['value'] + '/' +ex +'/'));
+                  shell.exec(process.env.PATHDOCKER.toString() + response['value'] + '/' +ex +'/');
 
                   open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex + '/public');
 
