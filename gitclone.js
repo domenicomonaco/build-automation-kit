@@ -51,6 +51,7 @@ function gitClone(ex, filecsv) {
         console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERr: ' + ex));
         shell.cd(ex);
 
+        shell.exec('pwd')
         git.git_reset_and_pull();
 
         console.log(clc.bgGreenBright('PULLED: ' + ex));
