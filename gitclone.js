@@ -48,10 +48,19 @@ function gitClone(ex, filecsv) {
       console.log(clc.bgCyanBright('[>] ' + ex));
 
       if (fs.existsSync(ex)) {
-        console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERr: ' + ex));
+        console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
+
+        fs.readdir(ex, function(err, data) {
+          if (data.length == 0) {
+            console.log("Directory is empty!");
+          } else {
+            console.log("Directory is not empty!");
+            console.log($data);
+          }
+        });
+
         shell.cd(ex);
 
-        shell.exec('pwd')
         git.git_reset_and_pull();
 
         console.log(clc.bgGreenBright('PULLED: ' + ex));
