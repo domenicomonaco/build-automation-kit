@@ -50,7 +50,7 @@ function gitClone(ex, filecsv) {
       if (fs.existsSync(ex)) {
         console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
 
-        fs.readdir(ex, function(err, data) {
+        fs.readdirSync(ex, function(err, data) {
           if (data.length == 0) {
             console.log("Directory is empty!");
           } else {
