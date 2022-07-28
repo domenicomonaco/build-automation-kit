@@ -50,7 +50,7 @@ function install(ex) {
               name: 'value',
               message: 'Pick a action',
               choices: [
-                { title: 'Pull from Git', value: 'update' },
+                { title: 'Pull from Git and Open VS CODE', value: 'update' },
                 { title: 'Install & Run', value: 'instrun' },
                 { title: 'Pull, Install & Run', value: 'upinstrun' },
                 { title: 'Delete locally and Re-Clone', value: 'reset' },
@@ -68,6 +68,8 @@ function install(ex) {
                 if (fs.existsSync(ex)) {
                   shell.cd(ex);
                   git.git_reset_and_pull();
+                  console.log(clc.bgGreenBright('[V] Opening CODE: ' + ex));
+                  shell.exec('code .')
                 }
               }
             }
