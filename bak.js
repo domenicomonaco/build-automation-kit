@@ -27,12 +27,10 @@ const { argv } = require("yargs")
     clones.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
 
   })
-  .command('delete [-f filename] [--notopen]',  '', (yargs) => {
+  .command('loop [-f filename] [--notopen]',  '', (yargs) => {
     console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('delete'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
     loops.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
-
-
   })
   .options({
     'f': {

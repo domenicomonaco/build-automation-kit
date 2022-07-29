@@ -17,11 +17,6 @@ const git = require('./lib/gitop.js');
 dotenv.config();
 shell.clear();
 
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function loopIT(row,ex) {
 
   const basedir = path.join(__dirname);
