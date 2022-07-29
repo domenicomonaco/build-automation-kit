@@ -30,6 +30,7 @@ function loopIT(row,ex) {
 
   visuals.header();
 
+  console.log(
     clc.red(row['nome']),
     clc.green(row['cognome']),
     clc.yellow('@' + row['gitusername']));
