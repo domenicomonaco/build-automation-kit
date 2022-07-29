@@ -19,6 +19,12 @@ List of users need to be stored into *users.csv* and need contain id, nome, cogn
 #### Configuration
 Configuration is stored into *.env* file
 
+#### Pay Attention
+
+**This software is an automation kit, so has some automation also critical such as "hard reset" and "deleting folders" and "discarding changes".** 
+
+Therefore pay attention to use it, is possible that some bugs can overwrite your work! Is seggesting using it into "controlled space" to prevent disaseter in others folder.
+
 #### Usage
           
               //////
