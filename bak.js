@@ -10,6 +10,7 @@ const open = require('open');
 const visuals = require('./lib/visuals.js');
 const git = require('./lib/gitop.js');
 const clones = require('./gitclone.js');
+const loops = require('./loops.js');
 //LOAD ENNV
 dotenv.config();
 shell.clear();
@@ -29,6 +30,8 @@ const { argv } = require("yargs")
   .command('delete [-f filename] [--notopen]',  '', (yargs) => {
     console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('delete'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
+    loops.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
+
 
   })
   .options({
