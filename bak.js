@@ -20,17 +20,14 @@ visuals.header();
 
 const { argv } = require("yargs")
   .command('update [-f filename] [--notopen]', '', (yargs) => {
-
     console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('update'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
-
     clones.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
-
   })
   .command('loop [-f filename] [--notopen]',  '', (yargs) => {
     console.log(clc.magenta('Funzionalità:') + clc.bgMagenta('delete'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
-    loops.gitCloneWrapper(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
+    loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file);
   })
   .options({
     'f': {

@@ -61,7 +61,7 @@ function loopIT(row,ex) {
 
 }
 
-function gitClone(ex, filecsv) {
+function loopCSV(ex, filecsv) {
   const basedir = path.join(__dirname);
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
@@ -72,18 +72,15 @@ function gitClone(ex, filecsv) {
     .pipe(csv())
     .on('data', (row) => {
       list.push(row);
-      //console.log('ok');
     })
     .on('end', () => {
-      console.log('CSV file successfully processed');
-      console.log(list);
       list.forEach(function (row){
         loopIT(row,ex);
       });
     });
 }
 
-function gitCloneWrapper(
+function start(
   reponame,
   notopenbrowser = true,
   filecsv) {
@@ -97,15 +94,15 @@ function gitCloneWrapper(
     });
 
     if (notopenbrowser == false) {
-      open(process.env.BASELOCALURL.toString());
+      //open(process.env.BASELOCALURL.toString());
     }
 
     for (let i = 0; i <= parseInt(response['value']); i++) {
-      gitClone(reponame, filecsv);
+      loopCSV(reponame, filecsv);
     }
 
   })();
 
 }
 
-module.exports = { gitCloneWrapper }
+module.exports = { start }
