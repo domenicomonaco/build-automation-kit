@@ -21,9 +21,11 @@ Configuration is stored into *.env* file
 
 #### Pay Attention
 
-**This software is an automation kit, therefore has some automation also critical such as "hard reset" and "deleting folders" and "discarding changes".** 
+**This software is an automation kit, therefore has some automation also critical such as "hard reset", "deleting folders" and "discarding changes".** 
 
-Therefore pay attention to use it, is possible that some bugs can overwrite your work! Is suggesting using it into "controlled space" to prevent disaseter in others folder.
+ **Therefore, PAY ATTENTION** while using it, is possible that some bugs can overwrite your work! As happen using git features.
+
+I suggesting using it into **"controlled space"** to prevent disaster in others folder.
 
 #### Usage
           
