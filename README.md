@@ -21,18 +21,25 @@ Configuration is stored into *.env* file
 
 #### Usage
           
+              //////
+      ___oOOo( ͡° ͜ ͡° )oOOo____[BAK IS BACK: BUILD AUTOMATION KIT] __________[GNU GPL v3]
+
       bak <command>
 
       Comandi:
-        bak update [-f filename] [--notopen]
-        bak delete [-f filename] [--notopen]
+        bak loop-update [-f filename]             Hard reset of user repo folder,
+        [--notopen]                               discarding changes and pull changes.
+                                                  If not exist it try to be cloned
+        bak loop-reinit [-f filename]             Deleting user repo folder, and
+        [--notopen]                               re-clone it. If not exist it cloned
+                                                  also
 
       Opzioni:
             --version  Mostra il numero di versione                         [booleano]
         -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
             --notopen  no open browser                 [booleano] [predefinito: false]
         -r, --repo     name of repo, default was taken from .env
-                                  [stringa] [richiesto] [predefinito: "db-university"]
+                      [stringa] [richiesto] [predefinito: "laravel-model-controller"]
         -h, --help     Mostra la schermata di aiuto                         [booleano]
 
       for more information, find the documentation at https://tecnologieperpersone.it
