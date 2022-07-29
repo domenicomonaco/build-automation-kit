@@ -10,7 +10,8 @@ const open = require('open');
 const visuals = require('./lib/visuals.js');
 const git = require('./lib/gitop.js');
 
-const loops = require('./loops.js');
+const loops = require('./lib/loops.js');
+
 //LOAD ENNV
 dotenv.config();
 shell.clear();
