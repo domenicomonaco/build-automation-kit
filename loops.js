@@ -22,11 +22,14 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function loopIT(row) {
+function loopIT(row,ex) {
+
+  const basedir = path.join(__dirname);
+  const baseURL = process.env.BASEGITURL;
+  const basefolder = process.env.BASEFOLDER;
 
   visuals.header();
 
-  console.log(
     clc.red(row['nome']),
     clc.green(row['cognome']),
     clc.yellow('@' + row['gitusername']));
@@ -79,7 +82,7 @@ function gitClone(ex, filecsv) {
       console.log('CSV file successfully processed');
       console.log(list);
       list.forEach(function (row){
-        loopIT(row);
+        loopIT(row,ex);
       });
     });
 }
