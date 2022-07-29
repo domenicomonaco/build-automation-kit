@@ -7,8 +7,6 @@ const clc = require("cli-color");
 require('shelljs-plugin-clear');
 const open = require('open');
 const path = require('path');
-var stdio = require('stdio');
-
 const visuals = require('./lib/visuals.js');
 
 const git = require('./lib/gitop.js');
@@ -17,7 +15,7 @@ const git = require('./lib/gitop.js');
 dotenv.config();
 shell.clear();
 
-function loopIT(row,ex) {
+function loopIT(row, ex, operation) {
 
   const basedir = path.join(__dirname);
   const baseURL = process.env.BASEGITURL;
@@ -34,39 +32,70 @@ function loopIT(row,ex) {
     shell.mkdir('-p', basefolder);
   }
   shell.cd(basefolder);
+  console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + basefolder));
 
 
   if (fs.existsSync(row['gitusername']) == false) {
     shell.mkdir('-p', row['gitusername']);
   }
   shell.cd(row['gitusername']);
+  console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + row['gitusername']));
 
   console.log(clc.bgCyanBright('[>] ' + ex));
 
-  if (fs.existsSync(ex)) {
-    console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
+  switch (operation) {
+    case 'update':
+      console.log(clc.bgWhite('[ UPDATE ]'));
+      if (fs.existsSync(ex)) {
+        console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
 
-    shell.cd(ex);
+        shell.cd(ex);
 
-    git.git_reset_and_pull();
+        git.git_reset_and_pull();
 
-    console.log(clc.bgGreenBright('PULLED: ' + ex));
+        console.log(clc.bgGreenBright('PULLED: ' + ex));
 
-  } else {
-    console.log(clc.bgRed('[X] NOT EXIST FOLDER: ' + ex));
-    shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+      } else {
+        console.log(clc.bgRed('[X] NOT EXIST FOLDER: ' + ex));
+        shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+      }
+
+      shell.cd(basedir);
+
+      break;
+    case 'reinit':
+
+      console.log(clc.bgWhite('[ REINITIALIZE ]'));
+
+      if (fs.existsSync(ex)) {
+        console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
+        console.log(clc.bgYellowBright('[X] DELETED FOLDERR: ' + ex));
+
+        shell.rm('-rf', ex);
+
+        console.log(clc.bgGreenBright('[✔] CLONING: ' + ex));
+        shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+
+        console.log(clc.bgGreenBright('PULLED: ' + ex));
+
+      } else {
+        console.log(clc.bgRed('[X] NOT EXIST FOLDER: ' + ex));
+        shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+      }
+
+      shell.cd(basedir);
+
+      break;
   }
 
-  shell.cd(basedir);
 
 }
 
-function loopCSV(ex, filecsv) {
+function loopCSV(ex, filecsv, operation) {
   const basedir = path.join(__dirname);
   const baseURL = process.env.BASEGITURL;
   const basefolder = process.env.BASEFOLDER;
   let list = [];
-  //open to the broowser
 
   fs.createReadStream(filecsv)
     .pipe(csv())
@@ -74,8 +103,8 @@ function loopCSV(ex, filecsv) {
       list.push(row);
     })
     .on('end', () => {
-      list.forEach(function (row){
-        loopIT(row,ex);
+      list.forEach(function (row) {
+        loopIT(row, ex, operation);
       });
     });
 }
@@ -83,7 +112,7 @@ function loopCSV(ex, filecsv) {
 function start(
   reponame,
   notopenbrowser = true,
-  filecsv) {
+  filecsv, operation) {
   (async () => {
     const response = await prompts({
       type: 'number',
@@ -94,13 +123,11 @@ function start(
     });
 
     if (notopenbrowser == false) {
-      //open(process.env.BASELOCALURL.toString());
+      open(process.env.BASELOCALURL.toString());
     }
-
     for (let i = 0; i <= parseInt(response['value']); i++) {
-      loopCSV(reponame, filecsv);
+      loopCSV(reponame, filecsv, operation);
     }
-
   })();
 
 }
