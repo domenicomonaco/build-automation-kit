@@ -22,6 +22,45 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function loopIT(row) {
+
+  visuals.header();
+
+  console.log(
+    clc.red(row['nome']),
+    clc.green(row['cognome']),
+    clc.yellow('@' + row['gitusername']));
+
+  if (fs.existsSync(basefolder) == false) {
+    shell.mkdir('-p', basefolder);
+  }
+  shell.cd(basefolder);
+
+
+  if (fs.existsSync(row['gitusername']) == false) {
+    shell.mkdir('-p', row['gitusername']);
+  }
+  shell.cd(row['gitusername']);
+
+  console.log(clc.bgCyanBright('[>] ' + ex));
+
+  if (fs.existsSync(ex)) {
+    console.log(clc.bgGreenBright('[✔] OK, EXIST FOLDERR: ' + ex));
+
+    shell.cd(ex);
+
+    git.git_reset_and_pull();
+
+    console.log(clc.bgGreenBright('PULLED: ' + ex));
+
+  } else {
+    console.log(clc.bgRed('[X] NOT EXIST FOLDER: ' + ex));
+    shell.exec(baseURL.toString() + row['gitusername'] + '/' + ex + '.git');
+  }
+
+  shell.cd(basedir);
+
+}
 
 function gitClone(ex, filecsv) {
   const basedir = path.join(__dirname);
@@ -39,17 +78,16 @@ function gitClone(ex, filecsv) {
     .on('end', () => {
       console.log('CSV file successfully processed');
       console.log(list);
+      list.forEach(function (row){
+        loopIT(row);
+      });
     });
-
-
-  //}
-
 }
 
 function gitCloneWrapper(
-    reponame,
-    notopenbrowser=true,
-    filecsv) {
+  reponame,
+  notopenbrowser = true,
+  filecsv) {
   (async () => {
     const response = await prompts({
       type: 'number',
@@ -59,7 +97,7 @@ function gitCloneWrapper(
       validate: value => value == 0 ? `deve essere almeno 1` : true
     });
 
-    if(notopenbrowser==false){
+    if (notopenbrowser == false) {
       open(process.env.BASELOCALURL.toString());
     }
 
