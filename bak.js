@@ -31,6 +31,7 @@ const { argv } = require("yargs")
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
   })
   .command('select',  '', (yargs) => {
+    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
   })
   .options({
     'f': {
