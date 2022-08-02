@@ -20,15 +20,17 @@ shell.clear();
 visuals.header();
 
 const { argv } = require("yargs")
-  .command('loop-update [-f filename] [--notopen]',  'Hard reset of user repo folder, discarding changes and pull changes. If not exist it try to be cloned', (yargs) => {
+  .command('loop-update',  'Hard reset of user repo folder, discarding changes and pull changes. If not exist it try to be cloned', (yargs) => {
     console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP UPDATE'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'update');
   })
-  .command('loop-reinit [-f filename] [--notopen]',  'Deleting user repo folder, and re-clone it. If not exist it cloned also', (yargs) => {
+  .command('loop-reinit',  'Deleting user repo folder, and re-clone it. If not exist it cloned also', (yargs) => {
     console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP REINITIALIZE'));
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
+  })
+  .command('select',  '', (yargs) => {
   })
   .options({
     'f': {
