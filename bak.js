@@ -8,9 +8,9 @@ require('shelljs-plugin-clear');
 const open = require('open');
 
 const visuals = require('./lib/visuals.js');
-const git = require('./lib/gitop.js');
 
 const loops = require('./lib/loops.js');
+const select = require('./lib/select.js');
 
 //LOAD ENNV
 dotenv.config();
