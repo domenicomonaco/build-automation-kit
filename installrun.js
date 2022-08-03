@@ -109,6 +109,8 @@ function install(ex) {
                 shell.cd(response['value']);
                 const thisurl = process.env.BASEGITURL.toString() + response['value'] + '/' + ex;
                 git.git_rm_and_clone(ex, thisurl);
+                shell.exec('code ' + ex);
+
               }
             }
           } else if (what['value'] == 'openbrowser') {
@@ -117,6 +119,9 @@ function install(ex) {
               if (fs.existsSync(response['value'])) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
+
+                  shell.exec('code ' + ex);
+
                   console.log(clc.bgGreenBright('[V] Not exist folder: ' + ex));
                   shell.cd(ex);
                   console.log(clc.bgCyanBright('[>] ' + ex));
@@ -133,13 +138,15 @@ function install(ex) {
               if (fs.existsSync(response['value'])) {
                 shell.cd(response['value']);
                 if (fs.existsSync(ex)) {
+
+                  shell.exec('code ' + ex);
+
                   console.log(clc.bgGreenBright('[V] Not exist folder: ' + ex));
                   shell.cd(ex);
                   console.log(clc.bgCyanBright('[>] ' + ex));
                   git.git_reset_and_pull();
 
-                  shell.exec(process.env.PATHDOCKER.toString() + response['value'] + '/' +ex +'/');
-
+                  shell.exec(process.env.PATHDOCKER.toString() + response['value'] + '/' + ex + '/');
                   open(process.env.BASELOCALURL.toString() + response['value'] + '/' + ex + '/public');
 
                 } else {
@@ -148,6 +155,7 @@ function install(ex) {
               }
             }
           }
+
 
 
           let rep = await prompts([
@@ -163,14 +171,12 @@ function install(ex) {
           ]);
 
           if (rep['value'] == 'restart') {
-
-
             shell.cd(dirPath);
             prompt();
-
           } else if (rep['value'] == 'exit') {
             process.exit(1);
           }
+
 
         })();
       }
