@@ -1,3 +1,10 @@
+/**
+ * Author: Domenico Monaco <domenico@tecnologieperpersone.it>
+ * License: GPL v3 or later
+ * Copyright: 2022 Tecnologie per Persone di Domenico Monaco
+ * Url: https://www.tecnologieperpersone.it
+ */
+
 const shell = require('shelljs')
 const fs = require('fs');
 const csv = require('csv-parser');
@@ -30,8 +37,11 @@ const { argv } = require("yargs")
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
   })
-  .command('select',  '', (yargs) => {
-    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
+  .command('select-user',  '', (yargs) => {
+    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user');
+  })
+  .command('select-custom',  '', (yargs) => {
+    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'custom');
   })
   .options({
     'f': {

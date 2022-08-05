@@ -14,6 +14,7 @@
     "prj:run": "node installrun.js"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "cli-color": "^2.0.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.1",
