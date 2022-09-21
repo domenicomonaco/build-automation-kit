@@ -105,3 +105,5 @@ dist
 
 students/*
 .~lock.users.csv\#
+
+*/**/*.csv

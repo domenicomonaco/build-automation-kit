@@ -47,7 +47,7 @@ const { argv } = require("yargs")
     'f': {
       alias: 'file',
       demandOption: true,
-      default: 'users.csv',
+      default: process.env.USERLISTFILE,
       describe: 'csv of user',
       type: 'string'
     }
