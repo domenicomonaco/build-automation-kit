@@ -26,7 +26,7 @@ function install(ex) {
   const basefolder = process.env.BASEFOLDER;
   let listofuser = [];
 
-  fs.createReadStream('process.env.USERLISTFILE')
+  fs.createReadStream(process.env.USERLISTFILE)
     .pipe(csv())
     .on('data', (row) => {
       listofuser.push({
