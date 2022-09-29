@@ -40,9 +40,6 @@ const { argv } = require("yargs")
   .command('select-user',  '', (yargs) => {
     select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user');
   })
-  .command('select-custom',  '', (yargs) => {
-    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'custom');
-  })
   .options({
     'f': {
       alias: 'file',

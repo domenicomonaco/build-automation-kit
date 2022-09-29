@@ -163,8 +163,6 @@ function install(ex) {
             }
           }
 
-
-
           let rep = await prompts([
             {
               type: 'autocomplete',
