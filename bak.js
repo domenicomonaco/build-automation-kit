@@ -37,7 +37,7 @@ const { argv } = require("yargs")
     console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
   })
-  .command('select-user',  '', (yargs) => {
+  .command('select-user',  'Select a single user', (yargs) => {
     select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user');
   })
   .options({
