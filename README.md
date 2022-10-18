@@ -29,28 +29,27 @@ I suggesting using it into **"controlled space"** to prevent disaster in others 
 
 #### Usage
           
-              //////
-      ___oOOo( ͡° ͜ ͡° )oOOo____[BAK IS BACK: BUILD AUTOMATION KIT] __________[GNU GPL v3]
+        //////
+___oOOo( ͡° ͜ ͡° )oOOo____[BAK IS BACK: BUILD AUTOMATION KIT] __________[GNU GPL v3]
 
-      bak <command>
+bak <command>
 
-      Comandi:
-        bak loop-update [-f filename]             Hard reset of user repo folder,
-        [--notopen]                               discarding changes and pull changes.
-                                                  If not exist it try to be cloned
-        bak loop-reinit [-f filename]             Deleting user repo folder, and
-        [--notopen]                               re-clone it. If not exist it cloned
-                                                  also
+Comandi:
+  bak loop-update  Hard reset of user repo folder, discarding changes and pull
+                   changes. If not exist it try to be cloned
+  bak loop-reinit  Deleting user repo folder, and re-clone it. If not exist it
+                   cloned also
+  bak select-user  Select a single user
 
-      Opzioni:
-            --version  Mostra il numero di versione                         [booleano]
-        -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
-            --notopen  no open browser                 [booleano] [predefinito: false]
-        -r, --repo     name of repo, default was taken from .env
-                      [stringa] [richiesto] [predefinito: "laravel-model-controller"]
-        -h, --help     Mostra la schermata di aiuto                         [booleano]
+Opzioni:
+      --version  Mostra il numero di versione                         [booleano]
+  -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
+      --notopen  no open browser                 [booleano] [predefinito: false]
+  -r, --repo     name of repo, default was taken from .env
+                               [stringa] [richiesto] [predefinito: "human-code"]
+  -h, --help     Mostra la schermata di aiuto                         [booleano]
 
-      for more information, find the documentation at https://tecnologieperpersone.it
+for more information, find the documentation at https://tecnologieperpersone.it
 
 ## Authors and License
 Copyright © 2022 [Tecnologie per Persone di Domenico Monaco](https://www.tecnologieperpersone.it) 
