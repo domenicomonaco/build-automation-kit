@@ -39,7 +39,7 @@ Comandi:
                    changes. If not exist it try to be cloned
   bak loop-reinit  Deleting user repo folder, and re-clone it. If not exist it
                    cloned also
-  bak select-user  Select a single user
+  bak select-user  Select a single user the csv file
 
 Opzioni:
       --version  Mostra il numero di versione                         [booleano]
