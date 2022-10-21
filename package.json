@@ -6,11 +6,6 @@
   "author": "Tecnologie per Persone di Domenico Monaco <https://www.tecnologieperpersone.it>",
   "license": "GNU GPL v3 or later",
   "scripts": {
-    "git": "node git-workflow.js",
-    "git:builds": "node builds.js",
-    "git:clone": "node gitclone.js",
-    "git:cleans": "node cleans.js",
-    "git:clonedelete": "node cleans.js && node gitclone.js",
     "prj:run": "node installrun.js"
   },
   "dependencies": {
