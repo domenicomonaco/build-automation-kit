@@ -1,1 +1,1 @@
-node .\installrun.js
+node bak select-user

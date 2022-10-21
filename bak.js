@@ -38,7 +38,7 @@ const { argv } = require("yargs")
     loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
   })
   .command('select-user',  'Select a single user from the csv file', (yargs) => {
-    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user');
+    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user', yargs.argv.repolist);
   })
   .options({
     'f': {
@@ -62,6 +62,14 @@ const { argv } = require("yargs")
       default: process.env.REPONAME,
       describe: 'name of repo, default was taken from .env',
       type: 'string'
+    }
+  }).options({
+    'repolist': {
+      alias: 'l',
+      demandOption: true,
+      default: false,
+      describe: 'load repolist form repo.csv',
+      type: 'boolean'
     }
   }).demandCommand(1, clc.bgRed('You need at least one command before moving on'))
   .help('h')
