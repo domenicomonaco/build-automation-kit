@@ -1,2 +1,2 @@
 #!/bin/sh
-node bak loop-update
+node bak loop -m reinit

@@ -1,2 +1,2 @@
 #!/bin/sh
-node bak select-user
+node bak select
