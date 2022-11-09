@@ -27,18 +27,28 @@ shell.clear();
 visuals.header();
 
 const { argv } = require("yargs")
-  .command('loop-update',  'Hard reset of user repo folder, discarding changes and pull changes. If not exist it try to be cloned', (yargs) => {
-    console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP UPDATE'));
-    console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
-    loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'update');
+  .command('loop', 'looping on', (yargs) => {
+    yargs.options({
+      m: {
+        alias: 'mode',
+        demandOption: true,
+        describe: 'mode',
+        type: 'string'
+      }
+    });
+
+    if (yargs.argv.mode == "reinit") {
+      console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP REINITIALIZE'));
+      console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
+      loops.start(yargs.argv.repo, yargs.argv.file, 'reinit');
+    } else if (yargs.argv.mode == "update") {
+      console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP UPDATE'));
+      console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
+      loops.start(yargs.argv.repo, yargs.argv.file, 'update');
+    }
   })
-  .command('loop-reinit',  'Deleting user repo folder, and re-clone it. If not exist it cloned also', (yargs) => {
-    console.log(clc.magenta('Feature:') + clc.bgMagenta('LOOP REINITIALIZE'));
-    console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
-    loops.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'reinit');
-  })
-  .command('select-user',  'Select a single user from the csv file', (yargs) => {
-    select.start(yargs.argv.repo, yargs.argv.notopen, yargs.argv.file,'user', yargs.argv.repolist);
+  .command('select', 'Select a single user from the csv file', (yargs) => {
+    select.start(yargs.argv.repo, yargs.argv.file);
   })
   .options({
     'f': {
@@ -62,14 +72,6 @@ const { argv } = require("yargs")
       default: process.env.REPONAME,
       describe: 'name of repo, default was taken from .env',
       type: 'string'
-    }
-  }).options({
-    'repolist': {
-      alias: 'l',
-      demandOption: true,
-      default: false,
-      describe: 'load repolist form repo.csv',
-      type: 'boolean'
     }
   }).demandCommand(1, clc.bgRed('You need at least one command before moving on'))
   .help('h')
