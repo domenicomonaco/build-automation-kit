@@ -27,7 +27,7 @@ shell.clear();
 visuals.header();
 
 const { argv } = require("yargs")
-  .command('loop', 'looping on', (yargs) => {
+  .command('loop', 'Looping on all users to update or reinitialize repos (must be selected at least one mode)', (yargs) => {
     yargs.options({
       m: {
         alias: 'mode',
@@ -55,22 +55,15 @@ const { argv } = require("yargs")
       alias: 'file',
       demandOption: true,
       default: process.env.USERLISTFILE,
-      describe: 'csv of user',
+      describe: 'CVS file with list of git users',
       type: 'string'
-    }
-  }).options({
-    'notopen': {
-      demandOption: false,
-      default: false,
-      describe: 'no open browser',
-      type: 'boolean'
     }
   }).options({
     'repo': {
       alias: 'r',
       demandOption: true,
       default: process.env.REPONAME,
-      describe: 'name of repo, default was taken from .env',
+      describe: 'Name of single repo, default was taken from .env',
       type: 'string'
     }
   }).demandCommand(1, clc.bgRed('You need at least one command before moving on'))

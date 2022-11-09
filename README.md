@@ -35,18 +35,16 @@ I suggesting using it into **"controlled space"** to prevent disaster in others 
     bak <command>
 
     Comandi:
-      bak loop-update  Hard reset of user repo folder, discarding changes and pull
-                      changes. If not exist it try to be cloned
-      bak loop-reinit  Deleting user repo folder, and re-clone it. If not exist it
-                      cloned also
-      bak select-user  Select a single user the csv file
+      bak loop    Looping on all users to update or reinitialize repos (must be
+                  selected at least one mode)
+      bak select  Select a single user from the csv file
 
     Opzioni:
           --version  Mostra il numero di versione                         [booleano]
-      -f, --file     csv of user    [stringa] [richiesto] [predefinito: "users.csv"]
-          --notopen  no open browser                 [booleano] [predefinito: false]
-      -r, --repo     name of repo, default was taken from .env
-                                  [stringa] [richiesto] [predefinito: "human-code"]
+      -f, --file     CVS file with list of git users
+                                    [stringa] [richiesto] [predefinito: "users.csv"]
+      -r, --repo     Name of single repo, default was taken from .env
+                    [stringa] [richiesto] [predefinito: "js-array-objects-carousel"]
       -h, --help     Mostra la schermata di aiuto                         [booleano]
 
     for more information, find the documentation at https://tecnologieperpersone.it
