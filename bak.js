@@ -13,11 +13,14 @@ const prompts = require('prompts');
 const clc = require("cli-color");
 require('shelljs-plugin-clear');
 const open = require('open');
+const pbuilder = require('./lib/pathbuilder.js');
 
 const visuals = require('./lib/visuals.js');
 
 const loops = require('./lib/loops.js');
 const select = require('./lib/select.js');
+const checkall = require('./lib/checkall.js');
+const path = require('./lib/pathbuilder.js');
 
 //LOAD ENNV
 dotenv.config();
@@ -46,6 +49,9 @@ const { argv } = require("yargs")
       console.log(clc.magenta('Repo name:') + clc.bgMagenta(yargs.argv.repo));
       loops.start(yargs.argv.repo, yargs.argv.file, 'update');
     }
+  })
+  .command('check', '', (yargs) => {
+    checkall.start();
   })
   .command('select', 'Select a single user from the csv file', (yargs) => {
     select.start(yargs.argv.repo, yargs.argv.file);
