@@ -19,6 +19,7 @@ const visuals = require('./lib/visuals.js');
 
 const loops = require('./lib/loops.js');
 const select = require('./lib/select.js');
+const build = require('./lib/buildrun.js');
 const checkall = require('./lib/checkall.js');
 const path = require('./lib/pathbuilder.js');
 
@@ -55,6 +56,9 @@ const { argv } = require("yargs")
   })
   .command('select', 'Select a single user from the csv file', (yargs) => {
     select.start(yargs.argv.repo, yargs.argv.file);
+  })
+  .command('build', 'Select a single user from the csv file', (yargs) => {
+    build.start(yargs.argv.repo, yargs.argv.file);
   })
   .options({
     'f': {
